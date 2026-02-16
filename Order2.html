@@ -1,0 +1,857 @@
+ 
+ <script>
+function getUrlParams() {
+    const params = {};
+    const queryString = window.location.search.substring(1);
+    const pairs = queryString.split('&');
+    
+    pairs.forEach(pair => {
+        const [key, value] = pair.split('=');
+        params[key] = decodeURIComponent(value || '');
+    });
+    
+    return params;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const params = getUrlParams();
+    
+    if (params.name && params.price) {
+        // 1. Оновлюємо назву
+        const nameElement = document.getElementById('flower-name-only');
+        if (nameElement) {
+            // Якщо назва і кількість в одному рядку
+            nameElement.textContent = params.name + (params.quantity ? ' - ' + params.quantity + ' шт' : '');
+        }
+        
+        // 2. Оновлюємо кількість (якщо окремий елемент)
+        const quantityElement = document.getElementById('flower-quantity');
+        if (quantityElement && params.quantity) {
+            quantityElement.textContent = params.quantity + ' шт';
+        }
+        
+        // 3. Оновлюємо ціну
+        const priceElement = document.getElementById('flower-price');
+        if (priceElement) {
+            priceElement.textContent = 'Всього : ' + params.price + ' грн';
+        }
+        
+        // 4. Оновлюємо маленьку ціну
+        const priceSmallElement = document.getElementById('flower-price-small');
+        if (priceSmallElement) {
+            priceSmallElement.textContent = params.price + ' грн';
+        }
+        
+        // 5. Оновлюємо картинку
+        const imageElement = document.getElementById('flower-image');
+        if (imageElement && params.img) {
+            imageElement.src = 'images/' + params.img;
+            imageElement.alt = params.name;
+        }
+    }
+});
+</script>
+
+
+  <a href="index.html">
+  <img 
+    style="width: 300px; height: 104px; left: 27px; top: -15px; position: absolute; cursor: pointer;" 
+    src="images/logotype.png" 
+    alt="Логотип"
+  >
+</a>
+
+  <div style="width: 1440.01px; height: 0px; left: 0px; top: 76px; position: absolute; outline: 0.50px black solid; outline-offset: -0.25px"></div>
+  <div style="width: 1440px; height: 1840px; left: 0px; top: 76px; position: absolute; background: black"></div>
+  <div style="width: 1174px; height: 1785px; left: 139px; top: 131px; position: absolute; background: white"></div>
+<div id="total-price" style="left: 1101px; top: 406px; position: absolute; color: black; font-size: 24px; font-family: Inter; font-weight: 300; word-wrap: break-word">Всього : 45 грн</div>
+  <!-- Тільки назва квітки -->
+<div id="flower-name-only" style="left: 400px; top: 324px; position: absolute; color: black; font-size: 24px; font-family: Inter; font-weight: 200; word-wrap: break-word">Букет в коробці  "Біла Гвоздика"</div>
+
+<!-- Кількість (можна видалити або залишити статичною) -->
+
+  <div style="left: 580px; top: 175px; position: absolute; color: black; font-size: 32px; font-family: Inter; font-weight: 400; word-wrap: break-word">Ваше замовлення </div>
+  <div style="width: 1109px; height: 0px; left: 166px; top: 298px; position: absolute; outline: 1px rgba(0, 0, 0, 0.70) solid; outline-offset: -0.50px"></div>
+  <div style="width: 1109px; height: 0px; left: 166px; top: 456px; position: absolute; outline: 1px rgba(0, 0, 0, 0.70) solid; outline-offset: -0.50px"></div>
+  <div style="width: 1109px; height: 0px; left: 166px; top: 1480px; position: absolute; outline: 1px rgba(0, 0, 0, 0.60) solid; outline-offset: -0.50px"></div>
+  <div style="width: 1109px; height: 0px; left: 166px; top: 1540px; position: absolute; background: rgba(0, 0, 0, 0.60); outline: 1px rgba(0, 0, 0, 0.60) solid; outline-offset: -0.50px"></div>
+
+<div 
+  style="
+    left: 223px;
+    top: 1490px;
+    position: absolute;
+    color: rgba(0, 0, 0, 0.60);
+    font-size: 32px;
+    font-family: Inter;
+    font-weight: 100;
+    word-wrap: break-word;
+    cursor: pointer;
+  "
+  onclick="
+    const params = new URLSearchParams();
+    const baseName =
+  document.getElementById('flower-name-only')
+    .textContent.split(' - ')[0];
+
+params.set('name', baseName);
+params.set('quantity', quantity);
+    params.set('quantity', quantity);
+    params.set('unitPrice', unitPrice);
+    params.set('extra', extraPrice);
+    params.set('total', unitPrice * quantity + extraPrice);
+    const img = document
+  .getElementById('flower-image')
+  .getAttribute('src')
+  .replace('images/', '');
+
+params.set('img', img); 
+  "
+>
+  Оплата
+</div>
+ 
+<div id="go-to-pay"
+     onclick="handlePaymentClick()"
+     style="text-decoration:none; cursor:pointer;">
+
+  <div style="width:345.91px; height:49px; left:558px; top:1780px;
+              position:absolute; background:white; border:2px black solid;">
+  </div>
+
+  <div id="pay-btn-text"
+       style="width:255px; left:633px; top:1791px;
+              position:absolute; color:black; font-size:24px;
+              font-family:Inter; font-weight:400;">
+    Перейти до оплати
+  </div>
+</div>
+
+
+  <div style="left: 233px; top: 1575px; position: absolute; color: black; font-size: 24px; font-family: Inter; font-weight: 400; word-wrap: break-word">Оберіть варіант оплати : </div>
+</div>
+
+
+
+     <!-- Кількість (можна видалити або залишити статичною) -->
+ <div id="dot-online"
+     onclick="selectPayment('online')"
+     style="width: 20px; height: 20px; left: 232px; top: 1622px; position: absolute; background: black; border-radius: 9999px; border: 1px black solid; cursor: pointer;">
+</div>
+
+<div onclick="selectPayment('online')"
+     style="left: 275px; top: 1620px; position: absolute;
+     color: black; font-size: 22px; cursor: pointer;">
+  Оплата онлайн Visa / MasterCard
+</div>
+
+
+
+  <div style="left: 235px; top: 1658px; position: absolute; color: #E13535; font-size: 20px; font-family: Inter; font-weight: 400; word-wrap: break-word">У разі несплати протягом 15 хв. при онлайн оплаті, замовлення скасовується.</div>
+    <div style="left: 249px; top: 887px; position: absolute; color: rgba(0, 0, 0, 0.80); font-size: 20px; font-family: Inter; font-weight: 300; word-wrap: break-word">Отримувач я </div>
+   <div id="dot-cash"
+     onclick="selectPayment('cash')"
+     style="width: 20px; height: 20px; left: 232px; top: 1698px; position: absolute; background: white; border-radius: 9999px; border: 1px black solid; cursor: pointer;">
+</div>
+
+<div onclick="selectPayment('cash')"
+     style="left: 275px; top: 1695px; position: absolute;
+     color: black; font-size: 22px; cursor: pointer;">
+  Готівкою при отриманні
+</div>
+<div id="order-result"
+     style="position:absolute; left:558px; top:1570px;
+            font-size:22px; color:black;">
+</div>
+
+
+
+
+  <!-- Мінус -->
+<div
+  style="width: 11px; height: 29px; left: 403px; top: 401px; position: absolute;
+         color: black; font-size: 28px; font-family: Inter; cursor: pointer;"
+  onclick="changeQuantity(-1)"
+>
+  −
+</div>
+
+<!-- Кількість -->
+<div
+  id="quantity-value"
+  style="left: 450px; top: 407px; position: absolute;
+         color: black; font-size: 24px; font-family: Inter;"
+>
+  1
+</div>
+
+<!-- Плюс -->
+<div
+  style="left: 488px; top: 400px; position: absolute;
+         color: black; font-size: 28px; font-family: Inter; cursor: pointer;"
+  onclick="changeQuantity(1)"
+>
+  +
+</div>
+
+
+  <img
+  id="cart-btn"
+  src="images/kech.png"
+  alt="Смітник"
+  style="
+    width: 29px;
+    height: 29px;
+    left: 1209px;
+    top: 318px;
+    position: absolute;
+    cursor: pointer;
+  "
+>
+ <div id="flowers-price"style="left: 615px; top: 405px; position: absolute; color: black; font-size: 24px; font-family: Inter; font-weight: 300; word-wrap: break-word">45 ₴</div>
+  <div style="left: 213px; top: 657px; position: absolute; color: black; font-size: 24px; font-family: Inter; font-weight: 400; word-wrap: break-word">Дані відправника </div>
+
+<input id="sender-name" type="text" placeholder="Імʼя"
+  type="text"
+  placeholder="Імʼя"
+  style="width:972px; height:49px; left:213px; top:694px;
+  position:absolute; font-size:20px; padding-left:20px; border:1px solid black;"
+>
+<input id="sender-phone" type="text" placeholder="Телефон"
+  type="text"
+  placeholder="Телефон"
+  style="width:972px; height:49px; left:213px; top:751px;
+  position:absolute; font-size:20px; padding-left:20px; border:1px solid black;"
+>
+
+<input id="receiver-name" type="text" placeholder="Імʼя"
+  type="text"
+  placeholder="Імʼя"
+  style="width:972px; height:49px; left:213px; top:933px;
+  position:absolute; font-size:20px; padding-left:20px; border:1px solid black;"
+>
+
+<input id="receiver-phone" type="text" placeholder="Телефон"
+  type="text"
+  placeholder="Телефон"
+  style="width:972px; height:49px; left:213px; top:990px;
+  position:absolute; font-size:20px; padding-left:20px; border:1px solid black;"
+>
+  <div style="left: 213px; top: 842px; position: absolute; color: black; font-size: 24px; font-family: Inter; font-weight: 400; word-wrap: break-word">Дані отримувача </div>
+<div 
+  id="same-as-sender"
+  onclick="toggleReceiver()"
+  style="width: 20px; height: 20px; left: 213px; top: 889px;
+         position: absolute; background: white; border: 1px black solid;
+         cursor: pointer; display: flex; align-items: center; justify-content: center;">
+</div>
+
+  <div style="left: 249px; top: 887px; position: absolute; color: rgba(0, 0, 0, 0.80); font-size: 20px; font-family: Inter; font-weight: 300; word-wrap: break-word">Отримувач я </div>
+  <div style="left: 223px; top: 1096px; position: absolute; color: black; font-size: 24px; font-family: Inter; font-weight: 400; word-wrap: break-word">Оберіть дату та час </div>
+  <div style="left: 223px; top: 1304px; position: absolute; color: black; font-size: 24px; font-family: Inter; font-weight: 400; word-wrap: break-word">Оберіть адресу для доставки  </div>
+  <div style="left: 226px; top: 1340px; position: absolute; color: rgba(0, 0, 0, 0.60); font-size: 20px; font-family: Inter; font-weight: 700; word-wrap: break-word">Івано-Франківськ </div>
+  <div style="width: 673px; height: 43px; left: 223px; top: 1390px; position: absolute; background: white; border: 1px black solid"></div>
+
+<div id="address-box"
+  style="
+    width: 673px;
+    height: 43px;
+    left: 223px;
+    top: 1390px;
+    position: absolute;
+    background: white;
+    border: 1px solid black;
+    cursor: text;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+  "
+  onclick="addressInput.focus()"
+>
+  <span id="address-text"
+    style="color: rgba(0,0,0,0.6); font-size: 20px; font-family: Inter;">
+    Впишіть адресу
+  </span>
+</div>
+<input
+  type="text"
+  id="address-input"
+  placeholder="Введіть адресу доставки"
+  style="
+    position: absolute;
+    left: 223px;
+    top: 1390px;
+    width: 673px;
+    height: 43px;
+    opacity: 0;
+    font-size: 20px;
+    padding-left: 20px;
+    z-index: 10;
+  "
+>
+<div style="position: relative;">
+  <!-- Поле для вибору дати/часу -->
+  <div id="time-box"
+    style="width: 673px; height: 43px; left: 223px; top: 1189px;
+           position: absolute; background: white;
+           border: 1px black solid; 
+           cursor: pointer;
+           display: flex;
+           align-items: center;
+           padding-left: 20px;
+           transition: border-color 0.3s;">
+    <span id="time-text"
+          style="color: rgba(0,0,0,0.6); font-size: 20px; font-family: Inter;">
+      Обрати час
+    </span>
+  </div>
+    <input type="date" id="custom-date" 
+    style="
+      position: absolute;
+      left: 223px;
+      top: 1197px;
+      width: 671px;
+      height: 41px;
+      opacity: 0;
+      cursor: pointer;
+      z-index: 10;
+    ">
+  <input type="time" id="time-input" 
+    style="
+      position: absolute;
+      left: 223px;
+      top: 1197px;
+      width: 671px;
+      height: 41px;
+      opacity: 0;
+      cursor: pointer;
+      z-index: 10;
+    ">
+</div>
+
+<div class="date-btn active" data-type="today"
+     style="width:135px;height:34px;left:223px;top:1143px;position:absolute;
+            background:black;color:white;border:1px solid black;
+            display:flex;align-items:center;justify-content:center;
+            cursor:pointer;">
+  Сьогодні
+</div>
+
+<div class="date-btn" data-type="tomorrow"
+     style="width:135px;height:34px;left:389px;top:1143px;position:absolute;
+            background:white;color:black;border:1px solid black;
+            display:flex;align-items:center;justify-content:center;
+            cursor:pointer;">
+  Завтра
+</div>
+
+<div class="date-btn" data-type="custom"
+     style="width:135px;height:34px;left:555px;top:1143px;position:absolute;
+            background:white;color:black;border:1px solid black;
+            display:flex;align-items:center;justify-content:center;
+            cursor:pointer;">
+  Інший день
+</div>
+
+
+
+
+  <img id="flower-image" style="width: 126px; height: 124px; left: 201px; top: 313px; position: absolute" src="images/Гвоздика.png" alt="замовити зображення">
+  <div data-property-1="Default" style="width: 176px; height: 29px; left: 514px; top: 540px; position: absolute">
+<div style="width: 28px; height: 28px; left: 0px; top: 1px; position: absolute; cursor: pointer;"
+     onclick="window.location.href='order3.html' + window.location.search">
+    <div style="width: 28px; height: 28px; left: 0px; top: 1px; position: absolute; background: white; border-radius: 9999px; border: 1px black solid"></div>
+    <div style="left: 53px; top: 0px; position: absolute; color: black; font-size: 24px; font-family: Inter; font-weight: 400; word-wrap: break-word">Самовивіз</div>
+</div>
+  </div>
+  <div data-property-1="Default" style="width: 164px; height: 29px; left: 241px; top: 540px; position: absolute">
+    <div style="width: 28px; height: 28px; left: 0px; top: 1px; position: absolute; background: black; border-radius: 9999px; border: 1px black solid"></div>
+    <div style="left: 52px; top: 0px; position: absolute; color: black; font-size: 24px; font-family: Inter; font-weight: 400; word-wrap: break-word">Доставка</div>
+  </div>
+
+
+    
+  </div>
+  <div style="left: 736px; top: 28px; position: absolute; color: black; font-size: 20px; font-family: Inter; font-weight: 400; word-wrap: break-word; cursor: pointer;"
+     onclick="window.location.href='index.html'">
+  Про нас
+</div>
+
+    <div style="left: 936px; top: 28px; position: absolute; color: black; font-size: 20px; font-family: Inter; font-weight: 400; word-wrap: break-word; cursor: pointer;"
+     onclick="window.location.href='catalog.html'">
+  Каталог
+</div>
+
+   <div style="left: 1127px; top: 28px; position: absolute; color: black; font-size: 20px; font-family: Inter; font-weight: 400; word-wrap: break-word; cursor: pointer;"
+     onclick="window.location.href='catalog.html'">
+  Замовити
+</div>
+<div style="
+    /* Позиціонування: Налаштуйте ці значення, щоб знайти блок */
+    position: absolute; 
+    top: 3.8%; 
+    left: 92%;
+    z-index: 9999; /* Максимальний пріоритет */
+    
+    /* Структура | EN | UA | */
+    display: flex; 
+    align-items: center; 
+    font-family: Inter, sans-serif; 
+    font-size: 12px; 
+    color: black;
+">
+    <span style="width: 1px; height: 20px; background-color: black;"></span>
+    
+    <a href="#" style="color: black; text-decoration: none; padding: 0 10px; font-weight: 700;">UA</a>
+    
+    <span style="width: 1px; height: 20px; background-color: black;"></span>
+
+    <a href="#" style="color: black; text-decoration: none; padding: 0 10px; font-weight: 400;">EN</a>
+    
+    <span style="width: 1px; height:20; background-color: black;"></span>
+</div>
+  <img style="width: 24px; height: 26px; left: 1276px; top: 28px; position: absolute" img src="images/basket.png" alt="Головне зображення">
+</div>
+  <div style="width: 26px; height: 18.77px; left: 1292px; top: 1861.81px; position: absolute; background: white"></div>
+  <div style="width: 26px; height: 18.77px; left: 1292px; top: 1861.81px; position: absolute; background: white"></div>
+  <div style="width: 1440px; height: 275px; left: 0px; top: 1914px; position: absolute; background: rgba(0, 0, 0, 0.95)"></div>
+  <img style="width: 26px; height: 21px; left: 1295px; top: 2044px; position: absolute" src="images/Vector.png" alt="Тікток">
+  <img style="width: 197px; height: 197px; left: 3px; top: 1896px; position: absolute" src="images/logow.png" alt="Логотип">
+  <div style="left: 485px; top: 1939px; position: absolute; color: white; font-size: 20px; font-family: Inter; font-weight: 400; word-wrap: break-word">Адреса:</div>
+  <div style="left: 479px; top: 2033px; position: absolute; color: white; font-size: 20px; font-family: Inter; font-weight: 400; word-wrap: break-word">Телефон:</div>
+  <div style="left: 434px; top: 2069px; position: absolute; color: white; font-size: 20px; font-family: Inter; font-weight: 400; word-wrap: break-word">+380 97 359 6466</div>
+  <div style="left: 434px; top: 2106px; position: absolute; color: white; font-size: 20px; font-family: Inter; font-weight: 400; word-wrap: break-word">+380 99 122 0740</div>
+  <div style="left: 270px; top: 1975px; position: absolute; color: #FFF8F3; font-size: 20px; font-family: Inter; font-weight: 400; word-wrap: break-word">📍 вул. Весняна, 12, Івано-Франківськ, 76018</div>
+  <div style="left: 1196px; top: 2145px; position: absolute; color: #FFF8F3; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">© 2025 All rights reserved</div>
+  <div style="left: 1218px; top: 1938px; position: absolute; color: white; font-size: 20px; font-family: Inter; font-weight: 400; word-wrap: break-word">Графік роботи:</div>
+  <div style="left: 1218px; top: 1974px; position: absolute; color: white; font-size: 20px; font-family: Inter; font-weight: 400; word-wrap: break-word">Пн-Нд 9:00 - 19:00</div>
+  <div style="width: 26px; height: 26px; left: 1237px; top: 2046px; position: absolute; overflow: hidden">
+
+    <img style="width: 26px; height: 26px; left: 0px; top: -1px; position: absolute" src="images/instagram.png" alt="Тікток">
+  </div>
+  <img style="width: 37px; height: 37px; left: 1347px; top: 2038px; position: absolute" src="images/Tiktok.png" alt="Тікток">
+
+    <div style="width: 78px; height: 24px; left: 812px; top: 1939px; position: absolute; cursor: pointer;"
+     onclick="window.location.href='catalog.html'"
+     onmouseover="this.children[0].style.color='#F74274'"
+     onmouseout="this.children[0].style.color='#FFF8F3'">
+
+  <div style="color: #FFF8F3; font-size: 20px; font-family: Inter; font-weight: 400;">
+    Каталог
+  </div>
+</div>
+    <div style="width: 48px; height: 24px; left: 811px; top: 1979px; position: absolute; cursor: pointer;"
+     onclick="window.location.href='discounts.html'"
+     onmouseover="this.children[0].style.color='#F74274'"
+     onmouseout="this.children[0].style.color='white'">
+
+  <div style="color: white; font-size: 20px; font-family: Inter; font-weight: 400;">
+    Знижки
+  </div>
+</div>
+  <div style="width: 80px; height: 24px; left: 970px; top: 1939px; position: absolute; cursor: pointer;"
+     onclick="window.location.href='index.html'"
+     onmouseover="this.children[0].style.color='#F74274'"
+     onmouseout="this.children[0].style.color='white'">
+
+  <div style="color: white; font-size: 20px; font-family: Inter; font-weight: 400;">
+    Головна
+  </div>
+</div>
+    <div style="width: 176px; height: 24px; left: 967px; top: 1979px; position: absolute; cursor: pointer;"
+     onclick="window.location.href='order2.html'"
+     onmouseover="this.children[0].style.color='#F74274'"
+     onmouseout="this.children[0].style.color='white'">
+
+  <div style="color: white; font-size: 20px; font-family: Inter; font-weight: 400;">
+    Доставка і оплата
+  </div>
+</div>
+
+  <div data-property-1="Default" style="width: 90px; height: 24px; left: 970px; top: 1819px; position: absolute">
+    <div style="left: 0px; top: 200px; position: absolute; color: white; font-size: 20px; font-family: Inter; font-weight: 400; word-wrap: break-word">Контакти</div>
+  </div>
+</div>
+<!-- Під стрічку -->
+<div onclick="selectPack(1)" style="cursor:pointer;">
+  <div style="left: 845px; top: 331px; position: absolute; color: black; font-size: 20px; font-family: Inter;">
+    Стрічка - 50 грн
+  </div>
+  <div id="pack1"
+       style="width:16px; height:16px; left:816px; top:335px;
+       position:absolute; background:white; border-radius:50%;
+       border:1px solid black;">
+  </div>
+</div>
+
+<!-- Упакування -->
+<div onclick="selectPack(2)" style="cursor:pointer;">
+  <div style="left: 845px; top: 404px; position: absolute; color: black; font-size: 20px; font-family: Inter;">
+    Упакування - 100 грн
+  </div>
+  <div id="pack2"
+       style="width:16px; height:16px; left:816px; top:409px;
+       position:absolute; background:white; border-radius:50%;
+       border:1px solid black;">
+  </div>
+</div>
+<script>
+function selectPack(option) {
+  document.getElementById('pack1').style.background = 'white';
+  document.getElementById('pack2').style.background = 'white';
+
+  if (option === 1) {
+    document.getElementById('pack1').style.background = 'black';
+    extraPrice = 50;
+  } else {
+    document.getElementById('pack2').style.background = 'black';
+    extraPrice = 100;
+  }
+
+  updatePrice();
+}
+</script>
+
+
+
+<script>
+document.getElementById('pickup-btn').addEventListener('click', function() {
+    const name = document.getElementById('flower-name-only').textContent;
+    const quantity = document.getElementById('flower-quantity').textContent.replace(' шт', '');
+    const price = document.getElementById('flower-price').textContent.replace('₴', '').trim();
+    const img = document.getElementById('flower-image').getAttribute('src').replace('images/', '');
+
+    const url = 'order3.html?name=' + encodeURIComponent(name) +
+                '&quantity=' + encodeURIComponent(quantity) +
+                '&price=' + encodeURIComponent(price) +
+                '&img=' + encodeURIComponent(img);
+
+    window.location.href = url;
+    
+
+    
+});
+</script>
+</body>
+
+<script>
+let quantity = 1;
+let unitPrice = 0;   // ціна за 1 квітку / букет
+let extraPrice = 0;  // стрічка / пакування
+
+document.addEventListener('DOMContentLoaded', function () {
+  const params = new URLSearchParams(window.location.search);
+
+  if (params.get('price')) {
+    unitPrice = Number(params.get('price')); // 🔥 ЦІНА З URL
+  }
+
+  if (params.get('quantity')) {
+    quantity = Number(params.get('quantity'));
+  }
+
+  updatePrice();
+});
+
+function changeQuantity(step) {
+  quantity += step;
+  if (quantity < 1) quantity = 1;
+  updatePrice();
+}
+
+function updatePrice() {
+  // 🔹 ціна за квіти
+  const flowersTotal = unitPrice * quantity;
+  document.getElementById('flowers-price').textContent =
+    flowersTotal + ' ₴';
+
+  // 🔹 всього
+  const total = flowersTotal + extraPrice;
+  document.getElementById('total-price').textContent =
+    'Всього : ' + total + ' грн';
+
+  // 🔹 назва + кількість
+  const nameEl = document.getElementById('flower-name-only');
+  const baseName = nameEl.textContent.split(' - ')[0];
+  nameEl.textContent = baseName + ' - ' + quantity + ' шт';
+
+  document.getElementById('quantity-value').textContent = quantity;
+}
+</script>
+
+
+
+
+<script>
+let isChecked = false;
+
+function toggleReceiver() {
+  const checkbox = document.getElementById('same-as-sender');
+
+  const senderName = document.getElementById('sender-name').value;
+  const senderPhone = document.getElementById('sender-phone').value;
+
+  const receiverName = document.getElementById('receiver-name');
+  const receiverPhone = document.getElementById('receiver-phone');
+
+  if (!isChecked) {
+    // ✅ ставимо галочку
+    checkbox.innerHTML = '✓';
+    checkbox.style.fontSize = '16px';
+
+    // ✅ копіюємо дані
+    receiverName.value = senderName;
+    receiverPhone.value = senderPhone;
+
+    isChecked = true;
+  } else {
+    // ❌ прибираємо галочку
+    checkbox.innerHTML = '';
+
+    // ❌ очищаємо поля
+    receiverName.value = '';
+    receiverPhone.value = '';
+
+    isChecked = false;
+  }
+}
+</script>
+
+<script>
+const dateButtons = document.querySelectorAll('.date-btn');
+const timeBox = document.getElementById('time-box');
+const timeText = document.getElementById('time-text');
+const timeInput = document.getElementById('time-input');
+const dateInput = document.getElementById('custom-date');
+
+let selectedType = 'today';
+
+// Функції для кожного типу кнопки
+function selectToday() {
+  selectedType = 'today';
+  timeText.textContent = 'Обрати час';
+  timeInput.value = '';
+  
+  // Автоматично відкриваємо вибір часу
+  setTimeout(() => {
+    timeInput.showPicker();
+  }, 100);
+}
+
+function selectTomorrow() {
+  selectedType = 'tomorrow';
+  timeText.textContent = 'Обрати час';
+  timeInput.value = '';
+  
+  // Автоматично відкриваємо вибір часу
+  setTimeout(() => {
+    timeInput.showPicker();
+  }, 100);
+}
+
+function selectCustomDay() {
+  selectedType = 'custom';
+  timeText.textContent = 'Обрати дату';
+  dateInput.value = '';
+  
+  // Автоматично відкриваємо календар
+  setTimeout(() => {
+    dateInput.showPicker();
+  }, 100);
+}
+
+// Обробка кліків на кнопки
+dateButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    // Скидаємо стилі всіх кнопок
+    dateButtons.forEach(b => {
+      b.style.background = 'white';
+      b.style.color = 'black';
+    });
+
+    // Застосовуємо стилі для активної кнопки
+    btn.style.background = 'black';
+    btn.style.color = 'white';
+
+    selectedType = btn.dataset.type;
+
+    // Викликаємо відповідну функцію
+    if (selectedType === 'today') {
+      selectToday();
+    } else if (selectedType === 'tomorrow') {
+      selectTomorrow();
+    } else if (selectedType === 'custom') {
+      selectCustomDay();
+    }
+  });
+});
+
+// Обробка кліку по рамці для вибору часу/дати
+timeBox.addEventListener('click', () => {
+  if (selectedType === 'custom') {
+    dateInput.showPicker();
+  } else {
+    timeInput.showPicker();
+  }
+});
+
+// Обробка вибору дати
+dateInput.addEventListener('change', () => {
+  const date = new Date(dateInput.value);
+  
+  // Форматуємо дату у вигляді "03.02.26"
+  const day = date.getDate().toString().padStart(2, '0');
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const year = date.getFullYear().toString().slice(-2);
+  
+  const formatted = `${day}.${month}.${year}`;
+  timeText.textContent = formatted;
+  
+  // Автоматично відкриваємо вибір часу після вибору дати
+  setTimeout(() => {
+    timeInput.showPicker();
+  }, 100);
+});
+
+// Обробка вибору часу
+timeInput.addEventListener('change', () => {
+  // Форматуємо час у зручний вигляд
+  const timeParts = timeInput.value.split(':');
+  const hours = timeParts[0];
+  const minutes = timeParts[1];
+  timeText.textContent = `${hours}:${minutes}`;
+  
+  // Якщо обрано "інший день", показуємо дату і час разом
+  if (selectedType === 'custom' && dateInput.value) {
+    const date = new Date(dateInput.value);
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear().toString().slice(-2);
+    
+    timeText.textContent = `${day}.${month}.${year} ${hours}:${minutes}`;
+  }
+});
+
+
+// Ініціалізація при завантаженні сторінки
+document.addEventListener('DOMContentLoaded', function() {
+  // Встановлюємо поточну дату як мінімальну для вибору
+  const today = new Date();
+  const minDate = today.toISOString().split('T')[0];
+  dateInput.min = minDate;
+  
+  // Встановлюємо початковий стан
+  selectToday();
+});
+</script> 
+
+<script>
+// Додайте цей код для покращення UX
+timeBox.addEventListener('mouseenter', () => {
+  timeBox.style.borderColor = '#007bff';
+  timeBox.style.boxShadow = '0 0 0 1px rgba(0,123,255,0.25)';
+});
+
+timeBox.addEventListener('mouseleave', () => {
+  timeBox.style.borderColor = 'black';
+  timeBox.style.boxShadow = 'none';
+});
+
+timeBox.addEventListener('mousedown', () => {
+  timeBox.style.backgroundColor = '#f8f9fa';
+});
+
+timeBox.addEventListener('mouseup', () => {
+  timeBox.style.backgroundColor = 'white';
+});
+</script>
+
+
+<script>
+const addressInput = document.getElementById('address-input');
+const addressText = document.getElementById('address-text');
+const addressBox = document.getElementById('address-box');
+
+// коли вводять адресу
+addressInput.addEventListener('input', () => {
+  addressText.textContent = addressInput.value || 'Обрати адресу';
+  addressText.style.color = addressInput.value
+    ? 'black'
+    : 'rgba(0,0,0,0.6)';
+});
+
+// фокус ефект
+addressInput.addEventListener('focus', () => {
+  addressBox.style.borderColor = '#007bff';
+  addressBox.style.boxShadow = '0 0 0 1px rgba(0,123,255,0.25)';
+});
+
+addressInput.addEventListener('blur', () => {
+  addressBox.style.borderColor = 'black';
+  addressBox.style.boxShadow = 'none';
+});
+</script>
+
+<script>
+document.getElementById('cart-btn').addEventListener('click', function () {
+
+  const confirmDelete = confirm('Очистити кошик?');
+
+  if (!confirmDelete) return;
+
+  // очищаємо URL-параметри → просто й надійно
+  window.location.href = 'кошик.html';
+
+});
+</script>
+
+
+<script>
+let paymentType = 'online';
+
+const dotOnline = document.getElementById('dot-online');
+const dotCash = document.getElementById('dot-cash');
+const resultText = document.getElementById('order-result');
+const buttonText = document.getElementById('pay-btn-text');
+
+function selectPayment(type) {
+  paymentType = type;
+  resultText.textContent = '';
+
+  if (type === 'online') {
+    dotOnline.style.background = 'black';
+    dotCash.style.background = 'white';
+    buttonText.textContent = 'Перейти до оплати';
+  }
+
+  if (type === 'cash') {
+    dotOnline.style.background = 'white';
+    dotCash.style.background = 'black';
+    buttonText.textContent = 'Оформити замовлення';
+  }
+}
+
+function handlePaymentClick() {
+
+  if (paymentType === 'cash') {
+    buttonText.textContent = 'Оформляємо...';
+
+    setTimeout(() => {
+      buttonText.textContent = 'Готово ✓';
+      resultText.textContent = 'Ваше замовлення прийняте 🩷';
+    }, 800);
+
+    return;
+  }
+
+  // ✅ ОНЛАЙН → ПЕРЕХІД
+  const params = new URLSearchParams(window.location.search);
+  params.set('quantity', quantity);
+  params.set('total', unitPrice * quantity + extraPrice);
+
+  const img = document.getElementById('flower-image').src.split('/').pop();
+  params.set('img', img);
+
+  window.location.href = 'order6.html?' + params.toString();
+}
+</script>
