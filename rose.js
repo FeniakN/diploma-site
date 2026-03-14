@@ -75,7 +75,7 @@ function renderCart() {
 
     container.innerHTML += `
       <div style="display:flex; margin-bottom:15px;">
-        <img src="/all/${item.img}" width="60" style="margin-right:10px;">
+        <img src="all/${item.img}" width="60" style="margin-right:10px;">
         <div>
           <div>${item.name}</div>
           <div>${item.quantity} x ${item.price} грн</div>
