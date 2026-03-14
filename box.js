@@ -1,14 +1,14 @@
 
   const products = [
-  { id: 1, name: "Біла Гвоздика (21шт)", price: 750, img: "gv.png" },
-  { id: 2, name: "Біла Хризантема (15шт)", price: 800, img: "hr.png" },
-  { id: 3, name: "Троянди Наомі (51шт)", price: 1200, img: "rr.png" },
-  { id: 4, name: "Рожеві півонії (15шт)", price: 1100, img: "pivtr.png" },
-  { id: 5, name: "Ромашки (17шт)", price: 600, img: "roma.png" },
-  { id: 6, name: "Мікс біло-блакитний (20шт)", price: 950, img: "mix.png" },
-  { id: 7, name: "Блакитні гіпсофіли (51шт)", price: 700, img: "sucho.png" },
-  { id: 8, name: "Мікс в коробці (51шт)", price: 1340, img: "mix-2.png" },
-  { id: 9, name: "Тюльпани  (51шт)", price: 989, img: "tulp.png" },
+  { id: 1, name: "Біла Гвоздика (21шт)", price: 750, all: "gv.png" },
+  { id: 2, name: "Біла Хризантема (15шт)", price: 800, all: "hr.png" },
+  { id: 3, name: "Троянди Наомі (51шт)", price: 1200, all: "rr.png" },
+  { id: 4, name: "Рожеві півонії (15шт)", price: 1100, all: "pivtr.png" },
+  { id: 5, name: "Ромашки (17шт)", price: 600, all: "roma.png" },
+  { id: 6, name: "Мікс біло-блакитний (20шт)", price: 950, all: "mix.png" },
+  { id: 7, name: "Блакитні гіпсофіли (51шт)", price: 700, all: "sucho.png" },
+  { id: 8, name: "Мікс в коробці (51шт)", price: 1340, all: "mix-2.png" },
+  { id: 9, name: "Тюльпани  (51шт)", price: 989, all: "tulp.png" },
 
 
 
