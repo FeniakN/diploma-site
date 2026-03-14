@@ -80,9 +80,9 @@
   <div style="left: 125px; top: 1426px; position: absolute; color: black; font-size: 24px; font-family: Inter; font-weight: 200; word-wrap: break-word">“Гіпсофіли”</div>
   <div style="left: 344px; top: 1426px; position: absolute; color: black; font-size: 24px; font-family: Inter; font-weight: 300; word-wrap: break-word">700 грн</div>
   <div style="left: 586px; top: 1426px; position: absolute; color: black; font-size: 24px; font-family: Inter; font-weight: 200; word-wrap: break-word">“Мікс”</div>
-  <div style="left: 813px; top: 1426px; position: absolute; color: black; font-size: 24px; font-family: Inter; font-weight: 300; word-wrap: break-word">1000 грн</div>
+  <div style="left: 813px; top: 1426px; position: absolute; color: black; font-size: 24px; font-family: Inter; font-weight: 300; word-wrap: break-word">1340 грн</div>
   <div style="left: 1023px; top: 1426px; position: absolute; color: black; font-size: 24px; font-family: Inter; font-weight: 200; word-wrap: break-word">“Тюльпани”</div>
-  <div style="left: 1240px; top: 1426px; position: absolute; color: black; font-size: 24px; font-family: Inter; font-weight: 300; word-wrap: break-word">900 грн</div>
+  <div style="left: 1240px; top: 1426px; position: absolute; color: black; font-size: 24px; font-family: Inter; font-weight: 300; word-wrap: break-word">989 грн</div>
   <div style="left: 114px; top: 974px; position: absolute; color: black; font-size: 24px; font-family: Inter; font-weight: 200; word-wrap: break-word">“Півонії”</div>
   <div style="left: 353px; top: 974px; position: absolute; color: black; font-size: 24px; font-family: Inter; font-weight: 300; word-wrap: break-word">1100 грн</div>
   <div style="left: 584px; top: 974px; position: absolute; color: black; font-size: 24px; font-family: Inter; font-weight: 200; word-wrap: break-word">“Ромашки”</div>
@@ -90,16 +90,18 @@
   <div style="width: 230px; left: 1010px; top: 974px; position: absolute; color: black; font-size: 24px; font-family: Inter; font-weight: 200; word-wrap: break-word">“Мікс (біло-блакитний)”</div>
   <div style="left: 1249px; top: 974px; position: absolute; color: black; font-size: 24px; font-family: Inter; font-weight: 300; word-wrap: break-word">950 грн</div>
   <div data-property-1="Default" style="width: 293px; height: 346px; left: 126px; top: 163px; position: absolute">
-     <a href="Order2.html" style="display: inline-block; text-decoration: none;">
-      <a href="Order2.html?name=Біла Гвоздика (21шт)&price=1200&img=gv.png&quantity">
+     
+<a href="#" onclick="addToCart(1); return false;">
+
     <img 
-        style="width: 293px; height: 346px; left: 0px; top: 0px; position: absolute; cursor: pointer;" 
+        style="width: 293px; height: 346px; position: absolute; cursor: pointer;" 
         src="images/gv.png" 
         onmouseover="this.src='images/anima-7.png'" 
         onmouseout="this.src='images/gv.png'"
         alt="Опис зображення"
     >
 </a>
+
   </div>
     <div style="left: 736px; top: 28px; position: absolute; color: black; font-size: 20px; font-family: Inter; font-weight: 400; word-wrap: break-word; cursor: pointer;"
      onclick="window.location.href='index.html'">
@@ -139,10 +141,71 @@
     
     <span style="width: 1px; height:20; background-color: black;"></span>
 </div>
-  <img style="width: 24px; height: 26px; left: 1276px; top: 28px; position: absolute" img src="images/basket.png" alt="Головне зображення">
+</div>
+<div id="cart-popup" style="
+  position: fixed;
+  top: 0;
+  right: -400px;
+  width: 380px;
+  height: 100%;
+  background: white;
+  box-shadow: -4px 0 15px rgba(0,0,0,0.1);
+  padding: 20px;
+  transition: 0.4s ease;
+  z-index: 9999;
+  overflow-y: auto;
+">
+
+  <div style="display:flex; justify-content:space-between; align-items:center;">
+    <h2>Кошик</h2>
+    <button onclick="closeCart()" style="border:none; background:none; font-size:20px; cursor:pointer;">✕</button>
+  </div>
+
+  <div id="cart-items" style="margin-top:20px;"></div>
+
+  <h3 id="cart-total" style="margin-top:20px;"></h3>
+
+  <button onclick="clearCart()" style="
+    margin-top:15px;
+    width:100%;
+    padding:10px;
+    background:black;
+    color:white;
+    border:none;
+    cursor:pointer;
+  ">
+    Очистити кошик
+  </button>
+
+</div>
+  <img
+    src="images/basket.png"
+    onclick="openCart()"
+
+    alt="Кошик"
+    style="width: 24px; height: 26px; left: 1276px; top: 28px; position: absolute; cursor: pointer;"
+  >
+</a>
+<div id="toast" style="
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: black;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 8px;
+  opacity: 0;
+  transition: 0.3s;
+  z-index: 9999;
+">
+  Додано в кошик ❤️
+</div>
+
+  
 </div>
   <div data-property-1="Default" style="width: 293px; height: 346px; left: 586px; top: 163px; position: absolute">
-        <a href="Order2.html?name=Біла Хризантема (15шт)&price=800&img=hr.png&quantity">
+      
+          <a href="#" onclick="addToCart(2); return false;">
     <img 
         style="width: 293px; height: 346px; left: 0px; top: 0px; position: absolute; cursor: pointer;" 
         src="images/hr.png" 
@@ -151,9 +214,14 @@
         alt="Опис зображення"
     >
 </a>
+
+
+
+
+
   </div>
   <div data-property-1="Default" style="width: 293px; height: 346px; left: 1020px; top: 163px; position: absolute">
-        <a href="Order2.html?name=Троянди Наомі (51шт)&price=1200&img=rr.png&quantity">
+          <a href="#" onclick="addToCart(3); return false;">
     <img 
         style="width: 293px; height: 346px; left: 0px; top: 0px; position: absolute; cursor: pointer;" 
         src="images/rr.png" 
@@ -164,7 +232,7 @@
 </a>
   </div>
   <div data-property-1="Default" style="width: 293px; height: 346px; left: 125px; top: 615px; position: absolute">
-        <a href="Order2.html?name=Рожеві півонії (15шт)&price=1100&img=pivtr.png&quantity">
+          <a href="#" onclick="addToCart(4); return false;">
     <img 
         style="width: 293px; height: 346px; left: 0px; top: 0px; position: absolute; cursor: pointer;" 
         src="images/pivtr.png" 
@@ -175,7 +243,7 @@
 </a>
   </div>
   <div data-property-1="Default" style="width: 293px; height: 346px; left: 586px; top: 615px; position: absolute">
-        <a href="Order2.html?name=Ромашки... (17 шт)&price=600&img=roma.png&quantity">
+          <a href="#" onclick="addToCart(5); return false;">
     <img 
         style="width: 293px; height: 346px; left: 0px; top: 0px; position: absolute; cursor: pointer;" 
         src="images/roma.png" 
@@ -186,7 +254,7 @@
 </a>
   </div>
   <div data-property-1="Default" style="width: 293px; height: 346px; left: 1020px; top: 615px; position: absolute">
-        <a href="Order2.html?name=Мікс біло-блакитний (20 шт)&price=950&img=mix.png&quantity">
+          <a href="#" onclick="addToCart(6); return false;">
     <img 
         style="width: 293px; height: 346px; left: 0px; top: 0px; position: absolute; cursor: pointer;" 
         src="images/mix.png" 
@@ -197,7 +265,7 @@
 </a>
   </div>
   <div data-property-1="Default" style="width: 293px; height: 346px; left: 126px; top: 1067px; position: absolute">
-        <a href="Order2.html?name=Блакитні гіпсофіли (51 шт)&price=700&img=sucho.png&quantity">
+          <a href="#" onclick="addToCart(7); return false;">
     <img 
         style="width: 293px; height: 346px; left: 0px; top: 0px; position: absolute; cursor: pointer;" 
         src="images/sucho.png" 
@@ -208,7 +276,7 @@
 </a>
   </div>
   <div data-property-1="Default" style="width: 293px; height: 346px; left: 586px; top: 1067px; position: absolute">
-       <a href="Order2.html?name=Мікс в коробці (51 шт)&price=1000&img=mix-2.png&quantity">
+        <a href="#" onclick="addToCart(8); return false;">
     <img 
         style="width: 293px; height: 346px; left: 0px; top: 0px; position: absolute; cursor: pointer;" 
         src="images/mix-2.png" 
@@ -219,7 +287,7 @@
 </a>
   </div>
   <div data-property-1="Default" style="width: 293px; height: 346px; left: 1020px; top: 1067px; position: absolute">
-        <a href="Order2.html?name=Тюльпани  (51 шт)&price=900&img=tulp.png&quantity">
+          <a href="#" onclick="addToCart(9); return false;">
     <img 
         style="width: 293px; height: 346px; left: 0px; top: 0px; position: absolute; cursor: pointer;" 
         src="images/tulp.png" 
@@ -230,3 +298,5 @@
 </a>
   </div>
 </div>
+
+<script src="box.js"></script>
