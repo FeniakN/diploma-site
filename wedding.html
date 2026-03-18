@@ -1,8 +1,9 @@
 
+
   <a href="index.html">
   <img 
     style="width: 300px; height: 104px; left: 27px; top: -15px; position: absolute; cursor: pointer;" 
-    src="images/logotype.png" 
+    src="all/logotype.png" 
     alt="Логотип"
   >
 </a>
@@ -119,162 +120,218 @@
     
     <span style="width: 1px; height:20; background-color: black;"></span>
 </div>
-  <img style="width: 24px; height: 26px; left: 1276px; top: 28px; position: absolute" img src="images/basket.png" alt="Головне зображення">
+<div id="cart-popup" style="
+  position: fixed;
+  top: 0;
+  right: -400px;
+  width: 380px;
+  height: 100%;
+  background: white;
+  box-shadow: -4px 0 15px rgba(0,0,0,0.1);
+  padding: 20px;
+  transition: 0.4s ease;
+  z-index: 9999;
+  overflow-y: auto;
+">
+
+  <div style="display:flex; justify-content:space-between; align-items:center;">
+    <h2>Кошик</h2>
+    <button onclick="closeCart()" style="border:none; background:none; font-size:20px; cursor:pointer;">✕</button>
+  </div>
+
+  <div id="cart-items" style="margin-top:20px;"></div>
+
+  <h3 id="cart-total" style="margin-top:20px;"></h3>
+
+  <button onclick="clearCart()" style="
+    margin-top:15px;
+    width:100%;
+    padding:10px;
+    background:black;
+    color:white;
+    border:none;
+    cursor:pointer;
+  ">
+    Очистити кошик
+  </button>
+
+</div>
+  <img
+    src="all/basket.png"
+    onclick="openCart()"
+
+    alt="Кошик"
+    style="width: 24px; height: 26px; left: 1276px; top: 28px; position: absolute; cursor: pointer;"
+  >
+</a>
+<div id="toast" style="
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: black;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 8px;
+  opacity: 0;
+  transition: 0.3s;
+  z-index: 9999;
+">
+  Додано в кошик ❤️
 </div>
   <div data-property-1="Default" style="width: 293px; height: 346px; left: 126px; top: 615px; position: absolute">
-               <a href="Order2.html?name=Ніжний ранок&price=600&img=morning.png&quantity=1" style="display: inline-block; text-decoration: none;">
+                <a href="#" onclick="addToCart(31); return false;">
     <img style="width: 293px; height: 346px; left: 0px; top: 0px; position: absolute; cursor: pointer;" 
-        src="images/morning.png" 
-        onmouseover="this.src='images/anima-37.png'" 
-        onmouseout="this.src='images/morning.png'"
+        src="all/morning.png" 
+        onmouseover="this.src='all/anima-37.png'" 
+        onmouseout="this.src='all/morning.png'"
         alt="Опис зображення"
     >
 </a>
   </div>
   <div data-property-1="Default" style="width: 293px; height: 346px; left: 584px; top: 615px; position: absolute">
-                <a href="Order2.html?name=Сонячна усмішка&price=800&img=sun.png&quantity=1" style="display: inline-block; text-decoration: none;">
+                  <a href="#" onclick="addToCart(32); return false;">
     <img style="width: 293px; height: 346px; left: 0px; top: 0px; position: absolute; cursor: pointer;" 
-        src="images/sun.png" 
-        onmouseover="this.src='images/anima-38.png'" 
-        onmouseout="this.src='images/sun.png'"
+        src="all/sun.png" 
+        onmouseover="this.src='all/anima-38.png'" 
+        onmouseout="this.src='all/sun.png'"
         alt="Опис зображення"
     >
 </a>
   </div>
   <div data-property-1="Default" style="width: 293px; height: 346px; left: 1020px; top: 615px; position: absolute">
-                <a href="Order2.html?name=Пудрова Мрія&price=750&img=mria.png&quantity=1" style="display: inline-block; text-decoration: none;">
+                  <a href="#" onclick="addToCart(33); return false;">
     <img style="width: 293px; height: 346px; left: 0px; top: 0px; position: absolute; cursor: pointer;" 
-        src="images/mria.png" 
-        onmouseover="this.src='images/anima-39.png'" 
-        onmouseout="this.src='images/mria.png'"
+        src="all/mria.png" 
+        onmouseover="this.src='all/anima-39.png'" 
+        onmouseout="this.src='all/mria.png'"
         alt="Опис зображення"
     >
 </a>
   </div>
   <div data-property-1="Default" style="width: 293px; height: 346px; left: 126px; top: 1067px; position: absolute">
-                <a href="Order2.html?name=Поцілунок нареченої&price=600&img=wedd.png&quantity=1" style="display: inline-block; text-decoration: none;">
+                  <a href="#" onclick="addToCart(34); return false;">
     <img style="width: 293px; height: 346px; left: 0px; top: 0px; position: absolute; cursor: pointer;" 
-        src="images/wedd.png" 
-        onmouseover="this.src='images/anima-40.png'" 
-        onmouseout="this.src='images/wedd.png'"
+        src="all/wedd.png" 
+        onmouseover="this.src='all/anima-40.png'" 
+        onmouseout="this.src='all/wedd.png'"
         alt="Опис зображення"
     >
 </a>
   </div>
   <div data-property-1="Default" style="width: 293px; height: 346px; left: 584px; top: 1067px; position: absolute">
-               <a href="Order2.html?name=Біла симфонія&price=540&img=sumf.png&quantity=1" style="display: inline-block; text-decoration: none;">
+                <a href="#" onclick="addToCart(35); return false;">
     <img style="width: 293px; height: 346px; left: 0px; top: 0px; position: absolute; cursor: pointer;" 
-        src="images/sumf.png" 
-        onmouseover="this.src='images/anima-41.png'" 
-        onmouseout="this.src='images/sumf.png'"
+        src="all/sumf.png" 
+        onmouseover="this.src='all/anima-41.png'" 
+        onmouseout="this.src='all/sumf.png'"
         alt="Опис зображення"
     >
 </a>
   </div>
   <div data-property-1="Default" style="width: 293px; height: 346px; left: 1020px; top: 1067px; position: absolute">
-                <a href="Order2.html?name=Весняна чистота&price=345&img=vesna.png&quantity=1" style="display: inline-block; text-decoration: none;">
+                  <a href="#" onclick="addToCart(36); return false;">
     <img style="width: 293px; height: 346px; left: 0px; top: 0px; position: absolute; cursor: pointer;" 
-        src="images/vesna.png" 
-        onmouseover="this.src='images/anima-42.png'" 
-        onmouseout="this.src='images/vesna.png'"
+        src="all/vesna.png" 
+        onmouseover="this.src='all/anima-42.png'" 
+        onmouseout="this.src='all/vesna.png'"
         alt="Опис зображення"
     >
 </a>
   </div>
   <div data-property-1="Default" style="width: 293px; height: 346px; left: 126px; top: 1519px; position: absolute">
-                <a href="Order2.html?name=Перлина кохання&price=550&img=perl.png&quantity=1" style="display: inline-block; text-decoration: none;">
+                  <a href="#" onclick="addToCart(37); return false;">
     <img style="width: 293px; height: 346px; left: 0px; top: 0px; position: absolute; cursor: pointer;" 
-        src="images/perl.png" 
-        onmouseover="this.src='images/anima-43.png'" 
-        onmouseout="this.src='images/perl.png'"
+        src="all/perl.png" 
+        onmouseover="this.src='all/anima-43.png'" 
+        onmouseout="this.src='all/perl.png'"
         alt="Опис зображення"
     >
 </a>
   </div>
   <div data-property-1="Default" style="width: 293px; height: 346px; left: 584px; top: 1519px; position: absolute">
-                <a href="Order2.html?name=Небесна ніжність&price=600&img=nebo.png&quantity=1" style="display: inline-block; text-decoration: none;">
+                  <a href="#" onclick="addToCart(38); return false;">
     <img style="width: 293px; height: 346px; left: 0px; top: 0px; position: absolute; cursor: pointer;" 
-        src="images/nebo.png" 
-        onmouseover="this.src='images/anima-44.png'" 
-        onmouseout="this.src='images/nebo.png'"
+        src="all/nebo.png" 
+        onmouseover="this.src='all/anima-44.png'" 
+        onmouseout="this.src='all/nebo.png'"
         alt="Опис зображення"
     >
 </a>
   </div>
   <div data-property-1="Default" style="width: 293px; height: 346px; left: 1020px; top: 1519px; position: absolute">
-               <a href="Order2.html?name=Рожевий шепіт&price=660&img=sepit.png&quantity=1" style="display: inline-block; text-decoration: none;">
+                <a href="#" onclick="addToCart(39); return false;">
     <img style="width: 293px; height: 346px; left: 0px; top: 0px; position: absolute; cursor: pointer;" 
-        src="images/sepit.png" 
-        onmouseover="this.src='images/anima-45.png'" 
-        onmouseout="this.src='images/sepit.png'"
+        src="all/sepit.png" 
+        onmouseover="this.src='all/anima-45.png'" 
+        onmouseout="this.src='all/sepit.png'"
         alt="Опис зображення"
     >
 </a>
   </div>
   <div data-property-1="Default" style="width: 293px; height: 346px; left: 126px; top: 1971px; position: absolute">
-              <a href="Order2.html?name=Королівська елегантність&price=550&img=ele.png&quantity=1" style="display: inline-block; text-decoration: none;">
+                 <a href="#" onclick="addToCart(40); return false;">
     <img style="width: 293px; height: 346px; left: 0px; top: 0px; position: absolute; cursor: pointer;" 
-        src="images/ele.png" 
-        onmouseover="this.src='images/anima-46.png'" 
-        onmouseout="this.src='images/ele.png'"
+        src="all/ele.png" 
+        onmouseover="this.src='all/anima-46.png'" 
+        onmouseout="this.src='all/ele.png'"
         alt="Опис зображення"
     >
 </a>
   </div>
   <div data-property-1="Default" style="width: 293px; height: 346px; left: 584px; top: 1971px; position: absolute">
-                <a href="Order2.html?name=Солодка мелодія&price=680&img=melo.png&quantity=1" style="display: inline-block; text-decoration: none;">
+                  <a href="#" onclick="addToCart(41); return false;">
     <img style="width: 293px; height: 346px; left: 0px; top: 0px; position: absolute; cursor: pointer;" 
-        src="images/melo.png" 
-        onmouseover="this.src='images/anima-47.png'" 
-        onmouseout="this.src='images/melo.png'"
+        src="all/melo.png" 
+        onmouseover="this.src='all/anima-47.png'" 
+        onmouseout="this.src='all/melo.png'"
         alt="Опис зображення"
     >
 </a>
   </div>
   <div data-property-1="Default" style="width: 293px; height: 346px; left: 1020px; top: 1971px; position: absolute">
-               <a href="Order2.html?name=Вічне кохання&price=490&img=visne.png&quantity=1" style="display: inline-block; text-decoration: none;">
+                <a href="#" onclick="addToCart(42); return false;">
     <img style="width: 293px; height: 346px; left: 0px; top: 0px; position: absolute; cursor: pointer;" 
-        src="images/visne.png" 
-        onmouseover="this.src='images/anima-48.png'" 
-        onmouseout="this.src='images/visne.png'"
+        src="all/visne.png" 
+        onmouseover="this.src='all/anima-48.png'" 
+        onmouseout="this.src='all/visne.png'"
         alt="Опис зображення"
     >
 </a>
   </div>
   <div data-property-1="Default" style="width: 293px; height: 346px; left: 126px; top: 2423px; position: absolute">
-               <a href="Order2.html?name=Чарівна чистота&price=550&img=susto.png&quantity=1" style="display: inline-block; text-decoration: none;">
+                <a href="#" onclick="addToCart(43); return false;">
     <img style="width: 293px; height: 346px; left: 0px; top: 0px; position: absolute; cursor: pointer;" 
-        src="images/susto.png" 
-        onmouseover="this.src='images/anima-49.png'" 
-        onmouseout="this.src='images/susto.png'"
+        src="all/susto.png" 
+        onmouseover="this.src='all/anima-49.png'" 
+        onmouseout="this.src='all/susto.png'"
         alt="Опис зображення"
     >
 </a>
   </div>
   <div data-property-1="Default" style="width: 293px; height: 346px; left: 584px; top: 2423px; position: absolute">
-                <a href="Order2.html?name=Сяйво ніжності&price=500&img=saivo.png&quantity=1" style="display: inline-block; text-decoration: none;">
+                  <a href="#" onclick="addToCart(44); return false;">
     <img style="width: 293px; height: 346px; left: 0px; top: 0px; position: absolute; cursor: pointer;" 
-        src="images/saivo.png" 
-        onmouseover="this.src='images/anima-50.png'" 
-        onmouseout="this.src='images/saivo.png'"
+        src="all/saivo.png" 
+        onmouseover="this.src='all/anima-50.png'" 
+        onmouseout="this.src='all/saivo.png'"
         alt="Опис зображення"
     >
 </a>
   </div>
   <div data-property-1="Default" style="width: 293px; height: 346px; left: 1020px; top: 2423px; position: absolute">
-                <a href="Order2.html?name=Квіткова мелодія&price=560&img=ost.png&quantity=1" style="display: inline-block; text-decoration: none;">
+                  <a href="#" onclick="addToCart(45); return false;">
     <img style="width: 293px; height: 346px; left: 0px; top: 0px; position: absolute; cursor: pointer;" 
-        src="images/ost.png" 
-        onmouseover="this.src='images/anima-51.png'" 
-        onmouseout="this.src='images/ost.png'"
+        src="all/ost.png" 
+        onmouseover="this.src='all/anima-51.png'" 
+        onmouseout="this.src='all/ost.png'"
         alt="Опис зображення"
     >
 </a>
   </div>
   <div style="width: 1440px; height: 275px; left: 0px; top: 2992px; position: absolute; background: rgba(0, 0, 0, 0.95)"></div>
 </div>
-<img style="width: 1.73px; height: 1.73px; left: 19.12px; top: 5.15px; position: absolute" src="images/Vector.png" alt="Тікток">
- <img style="width: 197px; height: 197px; left: 3px; top: 2975px; position: absolute" src="images/logow.png" alt="Логотип">
+<img style="width: 1.73px; height: 1.73px; left: 19.12px; top: 5.15px; position: absolute" src="all/Vector.png" alt="Тікток">
+ <img style="width: 197px; height: 197px; left: 3px; top: 2975px; position: absolute" src="all/logow.png" alt="Логотип">
   <div style="left: 485px; top: 3018px; position: absolute; color: white; font-size: 20px; font-family: Inter; font-weight: 400; word-wrap: break-word">Адреса:</div>
   <div style="left: 479px; top: 3112px; position: absolute; color: white; font-size: 20px; font-family: Inter; font-weight: 400; word-wrap: break-word">Телефон:</div>
   <div style="left: 434px; top: 3148px; position: absolute; color: white; font-size: 20px; font-family: Inter; font-weight: 400; word-wrap: break-word">+380 97 359 6466</div>
@@ -284,9 +341,9 @@
   <div style="left: 1218px; top: 3017px; position: absolute; color: white; font-size: 20px; font-family: Inter; font-weight: 400; word-wrap: break-word">Графік роботи:</div>
   <div style="left: 1218px; top: 3053px; position: absolute; color: white; font-size: 20px; font-family: Inter; font-weight: 400; word-wrap: break-word">Пн-Нд 9:00 - 19:00</div>
   <div style="width: 26px; height: 26px; left: 1237px; top: 3138px; position: absolute; overflow: hidden">
-<img style="width: 26px; height: 26px; left: 0px; top: -10px; position: absolute" src="images/instagram.png" alt="Тікток">
+<img style="width: 26px; height: 26px; left: 0px; top: -10px; position: absolute" src="all/instagram.png" alt="Тікток">
   </div>
- <img style="width: 37px; height: 37px; left: 1355px; top: 3134px; position: absolute" src="images/Tiktok.png" alt="Тікток">
+ <img style="width: 37px; height: 37px; left: 1355px; top: 3134px; position: absolute" src="all/Tiktok.png" alt="Тікток">
  
   <div style="width: 78px; height: 24px; left: 812px; top: 3018px; position: absolute; cursor: pointer;"
      onclick="window.location.href='catalog.html'"
@@ -336,26 +393,6 @@
   </div>
 </div>
 
-<script>
-function submitWeddingForm() {
+<script src="wedding.js"></script>
 
-  const name = document.getElementById('name').value.trim();
-  const phone = document.getElementById('phone').value.trim();
-  const comment = document.getElementById('comment').value.trim();
 
-  if (!name || !phone) {
-    alert("Будь ласка, заповніть ім'я та номер телефону");
-    return;
-  }
-
-  // можна тут зберігати в localStorage якщо потрібно
-  // localStorage.setItem('weddingRequest', JSON.stringify({name, phone, comment}));
-
-  alert("Заявка відправлена 💐 Ми звʼяжемось з вами!");
-
-  // очистити поля
-  document.getElementById('name').value = '';
-  document.getElementById('phone').value = '';
-  document.getElementById('comment').value = '';
-}
-</script>
