@@ -1,0 +1,125 @@
+
+  const products = [
+  { id: 46, name: "Кущова троянда (51шт)", price: 1110, img: "kus.png" },
+  { id: 47, name: "Троянда та Гіпсофіла(7шт)", price: 515, img: "one.png" },
+  { id: 48, name: "Піоновидна троянда (101шт)", price: 4565, img: "two.png" },
+  { id: 49, name: "Троянда Наомі (51шт)", price: 2290, img: "three.png" },
+  { id: 50, name: "Троянда Кахала (11шт)", price: 780, img: "Four.png" },
+  { id: 51, name: "Мікс квітів (21шт)", price: 988, img: "Five.png" },
+  { id: 52, name: "Хризантеми Троянди (25шт)", price: 1115, img: "Six.png" },
+  { id: 53, name: "Півонії та щось (31шт)", price: 1400, img: "Seven.png" },
+  { id: 54, name: "Гортензія та Лагурус", price: 340, img: "Eight.png" },
+  { id: 55, name: "Хризантеми Гіпсофіли (13шт)", price: 615, img: "Nine.png" },
+  { id: 56, name: "Білі Троянди (19шт)", price: 700, img: "Ten.png" },
+  { id: 57, name: "Ніжний Мікс (35шт)", price: 1000, img: "Eleven.png" },
+
+
+
+
+  ];
+
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+function openCart() {
+  document.getElementById("cart-popup").style.right = "0";
+  renderCart();
+}
+
+function closeCart() {
+  document.getElementById("cart-popup").style.right = "-400px";
+}
+
+function addToCart(id) {
+
+  let product = products.find(p => p.id === id);
+
+  if (!product) return;
+
+  let existing = cart.find(item => item.id === id);
+
+  if (existing) {
+    existing.quantity += 1;
+  } else {
+    cart.push({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      img: product.img,
+      quantity: 1
+    });
+  }
+
+  localStorage.setItem('cart', JSON.stringify(cart));
+  showToast();
+}
+
+
+function renderCart() {
+
+  let container = document.getElementById("cart-items");
+  let totalContainer = document.getElementById("cart-total");
+
+  container.innerHTML = "";
+  let total = 0;
+
+  if (cart.length === 0) {
+    container.innerHTML = "<h3>Ваш кошик порожній</h3>";
+    totalContainer.innerHTML = `
+      <button onclick="window.location.href='catalog.html'"
+      style="width:100%; padding:10px; background:black; color:white; border:none;">
+      Каталог
+      </button>
+    `;
+    return;
+  }
+
+  cart.forEach((item, index) => {
+    total += item.price * item.quantity;
+
+    container.innerHTML += `
+      <div style="display:flex; margin-bottom:15px;">
+        <img src="images/${item.img}" width="60" style="margin-right:10px;">
+        <div>
+          <div>${item.name}</div>
+          <div>${item.quantity} x ${item.price} грн</div>
+          <button onclick="removeItem(${index})"
+          style="border:none; background:none; color:red; cursor:pointer;">
+          Видалити
+          </button>
+        </div>
+      </div>
+    `;
+  });
+
+  totalContainer.innerHTML = `
+    <h3>Загальна сума: ${total} грн</h3>
+    <button onclick="window.location.href='Order2.html'"
+      style="margin-top:10px; width:100%; padding:10px; background:black; color:white; border:none;">
+      Оформити замовлення
+    </button>
+  `;
+}
+function showToast() {
+  let toast = document.getElementById("toast");
+  toast.style.opacity = "1";
+
+  setTimeout(() => {
+    toast.style.opacity = "0";
+  }, 2000);
+}
+
+
+
+function removeItem(index) {
+  cart.splice(index, 1);
+  localStorage.setItem('cart', JSON.stringify(cart));
+  renderCart();
+}
+
+function clearCart() {
+  cart = [];
+  localStorage.removeItem('cart');
+  renderCart();
+}
+
+
