@@ -35,7 +35,7 @@ if (type === 'online') {
   buttonText.style.width = '255px';
   buttonText.style.left = '633px';
 
-  goToPay.href = 'order6.html';
+  goToPay.href = 'Order6.html';
 }
 
 if (type === 'cash') {
