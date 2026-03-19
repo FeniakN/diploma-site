@@ -421,7 +421,7 @@ function handlePaymentClick() {
   const img = document.getElementById('flower-image').src.split('/').pop();
   params.set('img', img);
 
-  window.location.href = 'order6.html?' + params.toString();
+  window.location.href = 'Order6.html?' + params.toString();
 }
 
 
