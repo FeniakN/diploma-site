@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // картинка
   document.getElementById("flower-image").src =
-    "images/" + item.img;
+    "all/" + item.img;
 
   updatePrice();
 });
