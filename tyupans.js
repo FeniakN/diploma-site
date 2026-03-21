@@ -88,7 +88,7 @@ function renderCart() {
 
   totalContainer.innerHTML = `
     <h3>Загальна сума: ${total} грн</h3>
-    <button onclick="window.location.href='Order2.html'"
+    <button onclick="window.location.href='order2.html'"
       style="margin-top:10px; width:100%; padding:10px; background:black; color:white; border:none;">
       Оформити замовлення
     </button>
