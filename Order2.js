@@ -501,6 +501,85 @@ document.addEventListener("DOMContentLoaded", function() {
       Загальна сума: <b>${total} грн</b>
     </div>
   `;
+      // ========== КНОПКИ ДОСТАВКИ / САМОВИВОЗУ ==========
+const deliveryBtn = document.getElementById('delivery-btn');
+const pickupBtn = document.getElementById('pickup-btn');
+
+if (deliveryBtn) {
+    deliveryBtn.addEventListener('click', function() {
+        deliveryType = 'delivery';
+        console.log("🟢 Обрано ДОСТАВКУ, deliveryType =", deliveryType);
+    });
+}
+
+if (pickupBtn) {
+    pickupBtn.addEventListener('click', function() {
+        deliveryType = 'pickup';
+        console.log("🟢 Обрано САМОВИВІЗ, deliveryType =", deliveryType);
+    });
+} 
+// ========== ФІКС ДОСТАВКИ (ПРАЦЮЄ БЕЗ F12) ==========
+setTimeout(function() {
+    const deliveryBtn = document.getElementById('delivery-btn');
+    const pickupBtn = document.getElementById('pickup-btn');
+
+    if (deliveryBtn) {
+        deliveryBtn.onclick = function() {
+            deliveryType = 'delivery';
+            console.log("🟢 Доставка обрана");
+        };
+    }
+
+    if (pickupBtn) {
+        pickupBtn.onclick = function() {
+            deliveryType = 'pickup';
+            console.log("🟢 Самовивіз обраний");
+        };
+    }
+}, 200);
+// ========== АВТОМАТИЧНЕ ВИБІР ДОСТАВКИ ПРИ ЗАВАНТАЖЕННІ ==========
+// ========== АВТОМАТИЧНА ДОСТАВКА ПРИ ЗАВАНТАЖЕННІ ==========
+(function() {
+    // Встановлюємо доставку за замовчуванням
+    deliveryType = 'delivery';
+    console.log("🟢 Доставка активована автоматично");
+
+    // Шукаємо кнопки за текстом (надійніше, ніж за id або стилями)
+    const allDivs = document.querySelectorAll('div');
+    let deliveryBtn = null;
+    let pickupBtn = null;
+    
+    allDivs.forEach(div => {
+        const text = div.innerText || div.textContent;
+        if (text === 'Доставка' && div.style.cursor === 'pointer') {
+            deliveryBtn = div;
+        }
+        if (text === 'Самовивіз' && div.style.cursor === 'pointer') {
+            pickupBtn = div;
+        }
+    });
+    
+    // Якщо знайшли кнопку "Доставка" — робимо її активною візуально
+    if (deliveryBtn) {
+        deliveryBtn.style.opacity = '1';
+        deliveryBtn.style.fontWeight = 'bold';
+        // Шукаємо кружечок всередині
+        const circle = deliveryBtn.querySelector('div:first-child');
+        if (circle) circle.style.background = 'black';
+    }
+    
+    // Робимо кнопку "Самовивіз" неактивною візуально
+    if (pickupBtn) {
+        pickupBtn.style.opacity = '0.6';
+        const circle = pickupBtn.querySelector('div:first-child');
+        if (circle) circle.style.background = 'white';
+    }
+    
+    // Оновлюємо ціну (щоб доставка врахувалася)
+    if (typeof updatePrice === 'function') {
+        updatePrice();
+    }
+})();
 
 });
 
