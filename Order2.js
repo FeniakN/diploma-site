@@ -66,7 +66,7 @@ function selectPack(option) {
   updatePrice();
 }
 
-
+let deliveryType = "pickup";
 let quantity = 1;
 let unitPrice = 0;
 let extraPrice = 0;
