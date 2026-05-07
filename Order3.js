@@ -483,7 +483,7 @@ function goToPayment(e) {
     const total = unitPrice * quantity + extraPrice;
     
     // Формуємо URL з усіма даними
-    const url = 'order6.html?' + 
+    const url = 'Order6.html?' + 
         'name=' + encodeURIComponent(name) +
         '&quantity=' + quantity +
         '&total=' + total +
