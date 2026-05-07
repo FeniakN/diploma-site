@@ -436,7 +436,7 @@ function handlePaymentClick() {
     const deliveryAddress = document.getElementById('address-input')?.value || '';
 
     // 6. Формуємо URL (ВИПРАВЛЕНО)
-    const url = 'order6.html?' + 
+    const url = Order6.html?' + 
         'name=' + encodeURIComponent(name) +
         '&quantity=' + quantityValue +
         '&total=' + total +
