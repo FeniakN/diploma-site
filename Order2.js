@@ -399,6 +399,56 @@ function selectPayment(type) {
     buttonText.textContent = 'Оформити замовлення';
   }
 }
+function handlePaymentClick() {
+    console.log("🟢 Початок переходу");
+
+    // 1. Отримуємо назву букета
+    const nameEl = document.getElementById('flower-name-only');
+    let name = 'Букет';
+    if (nameEl) {
+        name = nameEl.textContent.split(' - ')[0];
+    }
+
+    // 2. Кількість
+    const quantityValue = quantity;
+
+    // 3. Ціна (товари + пакування)
+    const total = unitPrice * quantity + extraPrice;
+
+    // 4. Фото
+    const imgEl = document.getElementById('flower-image');
+    let img = '';
+    if (imgEl) {
+        img = imgEl.src.split('/').pop();
+    }
+    const deliveryRadio = document.querySelector('input[name="deliveryOption"]:checked');
+    if (deliveryRadio) {
+        deliveryType = deliveryRadio.value;
+    }
+    // 5. Доставка (pickup або delivery)
+    const delivery = deliveryType;
+
+    // Отримуємо ім'я, телефон та адресу
+    const customerName = document.getElementById('sender-name')?.value || '';
+    const customerPhone = document.getElementById('sender-phone')?.value || '';
+    const deliveryAddress = document.getElementById('address-input')?.value || '';
+
+    // 6. Формуємо URL (ВИПРАВЛЕНО)
+    const url = 'order6.html?' + 
+        'name=' + encodeURIComponent(name) +
+        '&quantity=' + quantityValue +
+        '&total=' + total +
+        '&img=' + encodeURIComponent(img) +
+        '&delivery=' + delivery +
+        '&customer_name=' + encodeURIComponent(customerName) +
+        '&customer_phone=' + encodeURIComponent(customerPhone) +
+        '&delivery_address=' + encodeURIComponent(deliveryAddress);
+
+    console.log("🟢 Перехід на:", url);
+    
+    // 7. Переходимо
+    window.location.href = url;
+}
 
 function handlePaymentClick() {
 
