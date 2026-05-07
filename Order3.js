@@ -455,4 +455,44 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+function goToPayment(e) {
+    if (e) e.preventDefault();
+    
+    console.log("🟢 Початок переходу (самовивіз)");
+    
+    // Отримуємо назву букета
+    const nameEl = document.getElementById('flower-name-only');
+    let name = 'Букет';
+    if (nameEl) {
+        name = nameEl.textContent.split(' - ')[0];
+    }
+    
+    // Отримуємо ім'я та телефон
+    const customerName = document.getElementById('sender-name')?.value || '';
+    const customerPhone = document.getElementById('sender-phone')?.value || '';
+    
+    // Адреса для самовивозу
+    let deliveryAddress = '';
+    if (selectedAddress === 1) {
+        deliveryAddress = 'м. Івано-Франківськ, вул. Михайла Мулика, 29';
+    } else {
+        deliveryAddress = 'м. Івано-Франківськ, вул. Вовчинецька, 187К';
+    }
+    
+    // Ціна
+    const total = unitPrice * quantity + extraPrice;
+    
+    // Формуємо URL з усіма даними
+    const url = 'order6.html?' + 
+        'name=' + encodeURIComponent(name) +
+        '&quantity=' + quantity +
+        '&total=' + total +
+        '&delivery=pickup' +
+        '&delivery_address=' + encodeURIComponent(deliveryAddress) +
+        '&customer_name=' + encodeURIComponent(customerName) +
+        '&customer_phone=' + encodeURIComponent(customerPhone);
+    
+    console.log("🟢 Перехід на:", url);
+    window.location.href = url;
+}
 
