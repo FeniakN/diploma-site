@@ -1,3 +1,4 @@
+
 function getUrlParams() {
     const params = {};
     const queryString = window.location.search.substring(1);
@@ -65,7 +66,7 @@ function selectPack(option) {
   updatePrice();
 }
 
-let deliveryType = "pickup";
+let deliveryType = "pickup"; 
 let quantity = 1;
 let unitPrice = 0;
 let extraPrice = 0;
@@ -90,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // картинка
   document.getElementById("flower-image").src =
-    "all/" + item.img;
+    "images/" + item.img;
 
   updatePrice();
 });
@@ -398,41 +399,47 @@ function selectPayment(type) {
     buttonText.textContent = 'Оформити замовлення';
   }
 }
+
 function handlePaymentClick() {
     console.log("🟢 Початок переходу");
 
-    // 1. Отримуємо назву букета
-    const nameEl = document.getElementById('flower-name-only');
+    // 1. Назва букета
     let name = 'Букет';
+    const nameEl = document.getElementById('flower-name-only');
     if (nameEl) {
-        name = nameEl.textContent.split(' - ')[0];
+        const fullText = nameEl.textContent;
+        name = fullText.split(' - ')[0];
     }
+    console.log("📌 Назва:", name);
 
     // 2. Кількість
     const quantityValue = quantity;
 
-    // 3. Ціна (товари + пакування)
+    // 3. Ціна
     const total = unitPrice * quantity + extraPrice;
 
     // 4. Фото
-    const imgEl = document.getElementById('flower-image');
     let img = '';
+    const imgEl = document.getElementById('flower-image');
     if (imgEl) {
         img = imgEl.src.split('/').pop();
     }
-    const deliveryRadio = document.querySelector('input[name="deliveryOption"]:checked');
-    if (deliveryRadio) {
-        deliveryType = deliveryRadio.value;
-    }
-    // 5. Доставка (pickup або delivery)
-    const delivery = deliveryType;
 
-    // Отримуємо ім'я, телефон та адресу
+    // 5. Тип доставки
+    const delivery = deliveryType;
+    console.log("🚚 Тип доставки:", delivery);
+
+    // 6. Ім'я та телефон
     const customerName = document.getElementById('sender-name')?.value || '';
     const customerPhone = document.getElementById('sender-phone')?.value || '';
-    const deliveryAddress = document.getElementById('address-input')?.value || '';
+    console.log("👤 Ім'я:", customerName);
+    console.log("📞 Телефон:", customerPhone);
 
-    // 6. Формуємо URL (ВИПРАВЛЕНО)
+    // 7. Адреса доставки
+    let deliveryAddress = document.getElementById('address-input')?.value || '';
+    console.log("📍 Адреса:", deliveryAddress);
+
+    // 8. Формуємо URL
     const url = 'order6.html?' + 
         'name=' + encodeURIComponent(name) +
         '&quantity=' + quantityValue +
@@ -444,33 +451,7 @@ function handlePaymentClick() {
         '&delivery_address=' + encodeURIComponent(deliveryAddress);
 
     console.log("🟢 Перехід на:", url);
-    
-    // 7. Переходимо
     window.location.href = url;
-}
-
-function handlePaymentClick() {
-
-  if (paymentType === 'cash') {
-    buttonText.textContent = 'Оформляємо...';
-
-    setTimeout(() => {
-      buttonText.textContent = 'Готово ✓';
-      resultText.textContent = 'Ваше замовлення прийняте 🩷';
-    }, 800);
-
-    return;
-  }
-
-  // ✅ ОНЛАЙН → ПЕРЕХІД
-  const params = new URLSearchParams(window.location.search);
-  params.set('quantity', quantity);
-  params.set('total', unitPrice * quantity + extraPrice);
-
-  const img = document.getElementById('flower-image').src.split('/').pop();
-  params.set('img', img);
-
-  window.location.href = 'Order6.html?' + params.toString();
 }
 
 
@@ -550,7 +531,8 @@ document.addEventListener("DOMContentLoaded", function() {
       Загальна сума: <b>${total} грн</b>
     </div>
   `;
-      // ========== КНОПКИ ДОСТАВКИ / САМОВИВОЗУ ==========
+
+  // ========== КНОПКИ ДОСТАВКИ / САМОВИВОЗУ ==========
 const deliveryBtn = document.getElementById('delivery-btn');
 const pickupBtn = document.getElementById('pickup-btn');
 
@@ -630,9 +612,7 @@ setTimeout(function() {
     }
 })();
 
+
 });
-
-
-
 
 
