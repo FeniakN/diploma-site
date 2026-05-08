@@ -1,4 +1,3 @@
-
 function getUrlParams() {
     const params = {};
     const queryString = window.location.search.substring(1);
@@ -66,7 +65,7 @@ function selectPack(option) {
   updatePrice();
 }
 
-let deliveryType = "pickup"; 
+let deliveryType = "pickup";
 let quantity = 1;
 let unitPrice = 0;
 let extraPrice = 0;
@@ -91,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // картинка
   document.getElementById("flower-image").src =
-    "images/" + item.img;
+    "all/" + item.img;
 
   updatePrice();
 });
@@ -399,7 +398,6 @@ function selectPayment(type) {
     buttonText.textContent = 'Оформити замовлення';
   }
 }
-
 function handlePaymentClick() {
     console.log("🟢 Початок переходу");
 
@@ -452,6 +450,30 @@ function handlePaymentClick() {
 
     console.log("🟢 Перехід на:", url);
     window.location.href = url;
+}
+
+function handlePaymentClick() {
+
+  if (paymentType === 'cash') {
+    buttonText.textContent = 'Оформляємо...';
+
+    setTimeout(() => {
+      buttonText.textContent = 'Готово ✓';
+      resultText.textContent = 'Ваше замовлення прийняте 🩷';
+    }, 800);
+
+    return;
+  }
+
+  // ✅ ОНЛАЙН → ПЕРЕХІД
+  const params = new URLSearchParams(window.location.search);
+  params.set('quantity', quantity);
+  params.set('total', unitPrice * quantity + extraPrice);
+
+  const img = document.getElementById('flower-image').src.split('/').pop();
+  params.set('img', img);
+
+  window.location.href = 'Order6.html?' + params.toString();
 }
 
 
@@ -531,8 +553,7 @@ document.addEventListener("DOMContentLoaded", function() {
       Загальна сума: <b>${total} грн</b>
     </div>
   `;
-
-  // ========== КНОПКИ ДОСТАВКИ / САМОВИВОЗУ ==========
+      // ========== КНОПКИ ДОСТАВКИ / САМОВИВОЗУ ==========
 const deliveryBtn = document.getElementById('delivery-btn');
 const pickupBtn = document.getElementById('pickup-btn');
 
@@ -612,7 +633,4 @@ setTimeout(function() {
     }
 })();
 
-
 });
-
-
