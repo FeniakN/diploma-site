@@ -398,17 +398,17 @@ function selectPayment(type) {
     buttonText.textContent = 'Оформити замовлення';
   }
 }
-function handlePaymentClick() {
-    console.log("🟢 Початок переходу");
+
+
+    // ========== ОНЛАЙН: ПЕРЕХІД З ДАНИМИ ==========
+    console.log("🟢 Початок переходу (доставка)");
 
     // 1. Назва букета
     let name = 'Букет';
     const nameEl = document.getElementById('flower-name-only');
     if (nameEl) {
-        const fullText = nameEl.textContent;
-        name = fullText.split(' - ')[0];
+        name = nameEl.textContent.split(' - ')[0];
     }
-    console.log("📌 Назва:", name);
 
     // 2. Кількість
     const quantityValue = quantity;
@@ -425,17 +425,13 @@ function handlePaymentClick() {
 
     // 5. Тип доставки
     const delivery = deliveryType;
-    console.log("🚚 Тип доставки:", delivery);
 
     // 6. Ім'я та телефон
     const customerName = document.getElementById('sender-name')?.value || '';
     const customerPhone = document.getElementById('sender-phone')?.value || '';
-    console.log("👤 Ім'я:", customerName);
-    console.log("📞 Телефон:", customerPhone);
 
     // 7. Адреса доставки
     let deliveryAddress = document.getElementById('address-input')?.value || '';
-    console.log("📍 Адреса:", deliveryAddress);
 
     // 8. Формуємо URL
     const url = 'Order6.html?' + 
@@ -450,30 +446,6 @@ function handlePaymentClick() {
 
     console.log("🟢 Перехід на:", url);
     window.location.href = url;
-}
-
-function handlePaymentClick() {
-
-  if (paymentType === 'cash') {
-    buttonText.textContent = 'Оформляємо...';
-
-    setTimeout(() => {
-      buttonText.textContent = 'Готово ✓';
-      resultText.textContent = 'Ваше замовлення прийняте 🩷';
-    }, 800);
-
-    return;
-  }
-
-  // ✅ ОНЛАЙН → ПЕРЕХІД
-  const params = new URLSearchParams(window.location.search);
-  params.set('quantity', quantity);
-  params.set('total', unitPrice * quantity + extraPrice);
-
-  const img = document.getElementById('flower-image').src.split('/').pop();
-  params.set('img', img);
-
-  window.location.href = 'Order6.html?' + params.toString();
 }
 
 
