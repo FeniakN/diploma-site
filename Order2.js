@@ -440,7 +440,7 @@ function handlePaymentClick() {
     console.log("📍 Адреса:", deliveryAddress);
 
     // 8. Формуємо URL
-    const url = 'order6.html?' + 
+    const url = 'Order6.html?' + 
         'name=' + encodeURIComponent(name) +
         '&quantity=' + quantityValue +
         '&total=' + total +
