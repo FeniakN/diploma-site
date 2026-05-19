@@ -94,7 +94,7 @@ function renderCart() {
     itemBlock.style.marginBottom = "15px";
 
     itemBlock.innerHTML = `
-      <img src="images/${item.img}" width="60" style="margin-right:10px;">
+      <img src="all/${item.img}" width="60" style="margin-right:10px;">
       <div>
         <div>${item.name}</div>
         <div>${item.quantity} x ${item.price} грн</div>
