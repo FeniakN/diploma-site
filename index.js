@@ -45,6 +45,18 @@ function addToCart(name, price, img) {
 
   localStorage.setItem('cart', JSON.stringify(cart));
   renderCart();
+  showToast();  // ← викликаємо функцію
+}
+
+// Ця функція має бути ОКРЕМО, не всередині addToCart!
+function showToast() {
+  let toast = document.getElementById("toast");
+  if (toast) {
+    toast.style.opacity = "1";
+    setTimeout(() => {
+      toast.style.opacity = "0";
+    }, 2000);
+  }
 }
 
 function renderCart() {
