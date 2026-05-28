@@ -132,7 +132,7 @@ function renderCart() {
     <h3 style="margin-top:20px;">Загальна сума: ${total} грн</h3>
 
     <button 
-      onclick="window.location.href='order2.html?'"
+      onclick="window.location.href='Order2.html?'"
       style="
         margin-top:15px;
         width:100%;
